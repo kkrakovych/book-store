@@ -76,8 +76,8 @@ public class BookService {
         BookEntity book = getBookById(id);
         // entityManager.lock(book, LockModeType.OPTIMISTIC);
         if (book != null) {
-            book.setQuantity(-1);
-            createOrUpdateBook(book);
+            book.setQuantity(book.getQuantity() - 1);
+            repository.save(book);
         }
         return book;
     }
