@@ -12,3 +12,7 @@ Content-Type: application/json
 GET http://localhost:8080/findBook?bookName=old
 Accept: application/json
 
+###
+
+GET http://localhost:8080/buyBookById?bookId=1
+Accept: application/json

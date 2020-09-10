@@ -4,6 +4,7 @@ import com.kosto.dao.BookEntity;
 import com.kosto.dao.BookService;
 import com.kosto.model.BookDTO;
 import com.kosto.model.BookEntityAdapter;
+import com.kosto.model.ResponseBookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,16 +32,16 @@ public class BookController {
 
     @GetMapping(value = "findBook")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDTO> findBook(@RequestParam String bookName) {
+    public List<ResponseBookDTO> findBook(@RequestParam String bookName) {
         List<BookEntity> entities = bookService.getBookByName(bookName);
         return entities.stream()
-                .map(v -> new BookDTO(v.getName(), v.getAuthor(), v.getQuantity()))
+                .map(v -> new ResponseBookDTO(v.getId(), v.getName(), v.getAuthor(), v.getQuantity()))
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(value = "buyBookById")
+    @GetMapping(value = "buyBookById")
     @ResponseStatus(HttpStatus.OK)
-    public boolean buyBook(@RequestBody Long bookId) {
+    public boolean buyBookBuId(@RequestParam Long bookId) {
         BookEntity entity = bookService.sellBook(bookId);
         return entity != null;
     }
