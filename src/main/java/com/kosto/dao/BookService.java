@@ -71,4 +71,15 @@ public class BookService {
             return entity;
         }
     }
+
+    public BookEntity sellBook(Long id) {
+        BookEntity book = getBookById(id);
+
+        if (book != null) {
+            book.setQuantity(-1);
+            createOrUpdateBook(book);
+        }
+
+        return book;
+    }
 }

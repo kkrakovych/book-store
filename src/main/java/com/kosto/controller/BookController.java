@@ -44,8 +44,8 @@ public class BookController {
     @PostMapping(value = "buyBookById")
     @ResponseStatus(HttpStatus.OK)
     public boolean buyBook(@RequestBody Long bookId) {
-        // TODO: add the operation
-        return false;
+        BookEntity entity = bookService.sellBook(bookId);
+        return entity != null;
     }
 
 }
