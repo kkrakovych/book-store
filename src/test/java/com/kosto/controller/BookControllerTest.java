@@ -2,6 +2,7 @@ package com.kosto.controller;
 
 import com.kosto.model.BookDTO;
 import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,7 +38,11 @@ public class BookControllerTest {
                 .body("test")
                 .post("/findBook")
                 .then()
-                .statusCode(HttpServletResponse.SC_OK);
+                .statusCode(HttpServletResponse.SC_OK)
+                .assertThat()
+                .body("name", Matchers.hasItem("testName"))
+                .body("author", Matchers.hasItem("testAuthor"))
+                .body("quantity", Matchers.hasItem(10));
     }
 
 }
