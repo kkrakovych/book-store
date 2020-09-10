@@ -6,10 +6,7 @@ import com.kosto.model.BookDTO;
 import com.kosto.model.BookEntityAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,9 +29,9 @@ public class BookController {
         bookService.createOrUpdateBook(bookEntityAdapter.getBookEntity());
     }
 
-    @PostMapping(value = "findBook")
+    @GetMapping(value = "findBook")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDTO> findBook(@RequestBody String bookName) {
+    public List<BookDTO> findBook(@RequestParam String bookName) {
         List<BookEntity> entities = bookService.getBookByName(bookName);
         return entities.stream()
                 .map(v -> new BookDTO(v.getName(), v.getAuthor(), v.getQuantity()))

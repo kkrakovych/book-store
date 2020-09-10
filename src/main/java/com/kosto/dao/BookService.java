@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
@@ -74,12 +75,11 @@ public class BookService {
 
     public BookEntity sellBook(Long id) {
         BookEntity book = getBookById(id);
-
+        entityManager.lock(book, LockModeType.OPTIMISTIC);
         if (book != null) {
             book.setQuantity(-1);
             createOrUpdateBook(book);
         }
-
         return book;
     }
 }

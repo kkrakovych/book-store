@@ -1,0 +1,14 @@
+POST http://localhost:8080/addBook
+Content-Type: application/json
+
+{
+  "name": "Good Old Man",
+  "author": "New Day",
+  "quantity": 10
+}
+
+###
+
+GET http://localhost:8080/findBook?bookName=old
+Accept: application/json
+
