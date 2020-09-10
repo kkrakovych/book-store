@@ -1,17 +1,28 @@
-package com.kosto.model.request;
+package com.kosto.model;
+
+import java.util.StringJoiner;
 
 public final class BookDTO {
 
-    private String bookName;
+    private String name;
     private String author;
     private int quantity;
 
-    public String getBookName() {
-        return bookName;
+    public BookDTO() {
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public BookDTO(String name, String author, int quantity) {
+        this.name = name;
+        this.author = author;
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAuthor() {
@@ -28,5 +39,14 @@ public final class BookDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", BookDTO.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .add("author='" + author + "'")
+                .add("quantity=" + quantity)
+                .toString();
     }
 }

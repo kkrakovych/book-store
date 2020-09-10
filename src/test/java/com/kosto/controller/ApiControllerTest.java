@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebMvcTest(ApiController.class)
 @ExtendWith(SpringExtension.class)
-public class ApiControllerTest {
+class ApiControllerTest {
 
     @Autowired
-    MockMvc mvcMock;
+    private MockMvc mvcMock;
 
     @BeforeEach
     void setUp() {
